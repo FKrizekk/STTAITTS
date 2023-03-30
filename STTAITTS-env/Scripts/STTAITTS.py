@@ -198,7 +198,7 @@ while True:
                     else:
                         gpt_prompt = saidString
                         response = openai.Completion.create(
-                        engine="text-davinci-003",
+                        engine="gpt-4",
                         prompt=gpt_prompt,
                         temperature=0.5,
                         max_tokens=256,
