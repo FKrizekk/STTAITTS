@@ -1,1 +1,17 @@
-Je 04:54 PM.
+Se rozpočtem 5 000 Kč můžete již pořídit solidní začátečnickou kytaru. Uvedu několik doporučení pro různé typy kytar.
+
+1. Akustická kytara:
+- Yamaha F310: Tato kytara je dobře vyrobená, nabízí pohodlí při hraní a má příjemný zvuk.
+- Cort AD810: Cort je známý pro své cenově dostupné kytary dobře znějící a pohodlné k hraní.
+
+2. Klasická kytara:
+- Alhambra Z-Nature: Španělská značka Alhambra je proslulá svými kvalitními klasickými kytarami a tento model je dobrým startem pro začátečníky.
+- Yamaha C40: Další příjemná kytara s perfektní špičkovou kvalitou od společnosti Yamaha.
+
+3. Elektrická kytara:
+- Squier Bullet Stratocaster: Squier je dceřiná značka Fender, která nabízí levnější modely kytar Fender. Stratocaster je ikonická kytara vhodná pro mnoho hudebních žánrů.
+- Epiphone Les Paul Special II: Tato kytara je levnější verzí slavné Gibson Les Paul a je vhodná pro začátečníky.
+
+Navštivte hudební obchod a vyzkoušejte některé z těchto kytar. Výběr kytary je velmi osobní záležitost a vyzkoušení kytary je důležité pro to, abyste si byli jisti, že na ni budete rádi hrát.
+
+Je také dobré investovat do příslušenství, jako je ladička, popruh, trsátko a pouzdro či stojan na kytaru. MouseButton1.ActionListener

@@ -38,8 +38,9 @@ dictt = {
 }
 
 
-print(dictt)
-
+mess = [
+    {"role": "system", "content": "Jsi užitečný assistant."}
+    ]
 
 
 def text_to_wav(voice_name: str, text: str):
@@ -196,26 +197,24 @@ while True:
 
                         os.system("Rundll32.exe Powrprof.dll,SetSuspendState Sleep") 
                     else:
-                        gpt_prompt = saidString
-                        response = openai.Completion.create(
-                        engine="gpt-4",
-                        prompt=gpt_prompt,
-                        temperature=0.5,
-                        max_tokens=256,
-                        top_p=1.0,
-                        frequency_penalty=0.0,
-                        presence_penalty=0.0
+                        mess.append({"role" : "user", "content" : saidString})
+                        response = openai.ChatCompletion.create(
+                        model="gpt-4",
+                        messages=mess
                         )
-                        print(response['choices'][0]['text'])
+                        
+                        mess.append({"role" : "assistant", "content" : response['choices'][0]['message']['content']})
+                        print(mess)
+                        print(response['choices'][0]['message']['content'])
 
                         f = open(logPath, "w", encoding="utf-8")
-                        f.write(response['choices'][0]['text']+"\n")
+                        f.write(response['choices'][0]['message']['content']+"\n")
                         f.close()
 
-                        if response['choices'][0]['text'][0] == "?":
-                            text_to_wav("cs-CZ-Wavenet-A", response['choices'][0]['text'][1:])
+                        if response['choices'][0]['message']['content'][0] == "?":
+                            text_to_wav("cs-CZ-Wavenet-A", response['choices'][0]['message']['content'][1:])
                         else:
-                            text_to_wav("cs-CZ-Wavenet-A", response['choices'][0]['text'])
+                            text_to_wav("cs-CZ-Wavenet-A", response['choices'][0]['message']['content'])
                 except sr.UnknownValueError:
                     print("Could not understand audio")
 
