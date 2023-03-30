@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import os
+from dotenv import load_dotenv
 import sys
 import time
 import openai
@@ -9,10 +10,11 @@ import keyboard
 import json
 import traceback
 
-openai.api_key = os.getenv("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")
-openai.api_key = "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"
-openai.organization = "org-4xUbQUKzM7LkGIGepaZV3CTs"
-OPENAI_API_KEY = "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"
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), 'keys.env'))
+pkey = str(os.getenv("SERVICE_ACCOUNT_PKEY"))
+openai.organization = os.getenv("OPENAI_ORG")
+OPENAI_API_KEY = os.getenv("OPENAI_KEY")
+openai.api_key = os.getenv("OPENAI_KEY")
 
 
 
@@ -22,11 +24,11 @@ x = 0
 from google.oauth2 import service_account
 import google.cloud.texttospeech as tts
 
-dict = {
+dictt = {
   "type": "service_account",
   "project_id": "sttaitts",
   "private_key_id": "8b0ad904fd6d6096d8b5e87f54d64fbb977d0012",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCjfzADY4T+re73\ncBkv7GTShE6AkcxYhr8ShVsj2Fsa3Czwoy666nbh2oxcH9NiIC7jzDuT0G3MteSp\nwL2y33lwtZHvFt8sGiJtEqba8CxQIyhAiEbwz3FsgQjaKGPmciDvwCY4PN7fxpzd\njcqOXg1HhpT6+GRCCAVfoiTplzPwf7haGd/+TyvyY2/zIhMsZVo8aGdybMVu4yKs\nxjrJWAKZTtcVNr88Rc2ORHNOP2nW2OjzJMf8gWqHa45LRG2AyrMyW9xdJwV973VH\nFu9oNpTJPHCAxBsWbS62u0eoa6jw2mKpBBAxY5F8xEn1eR2NEQE0UKsrhUsKY9G5\nEHbY5/QbAgMBAAECggEAPfvkKgS60QsEA8793YtTlfQPBvM/c3hyTAU+zlIiCAbd\nCsXy2240b9+5QtvV+eeVn0s4cwub9PYooKqvwHa0xaQwlWIobcHit1NQ6sQPKLqL\nchu4OWeL6sTopDyX0zAFiJ9iXgPFwzS7F8u/tUW25x0Asj0lVVtRHjaMo/ps+In3\noFMKbLVELxzTa8U5FauT+5Vx08DmEntJW0I9RsSiOgsqlTvly+yvCNSNAfh2g6+q\n+bXBGtvUMiabKRsnnRZ+QCYGI+pSpBPzQFHaA5xSI7tajQpKQSewVf8JnmVVreUc\nMaI92v7QZ5ewXfjwTcvdQnUF+sne1aMbCkEwphi9oQKBgQDef+VNnSjhpk7UR/YI\nktj4eDhrfQVlBVyz1q3HuWWIR/YaH72MppYGq0JQu8kmczm/IOVOQIFktMQ88Yna\n70Xcu7vQbhA+Mz8Fx85uu0303vFbaJj8DdkkFOypLSEvcw9nYrnEmJuERqPy0oR4\n6dp7e9IF78Jvkv8Q/ozp22in0wKBgQC8HRFonJ/XY5UmDwbRA8p5Y/rDNyHplBCA\nSOajEOqoU3mz6Ib+Xlof5KP7zhqZPHIxNHlFA/hy+mAgveAR2uDlUHqZ0DcLEFhJ\nNOwJLmt7NrWDqsx7FyXh0B4KzCnP0mBRsUGgArxFR1pO4GxIvl8GU0VAKIlTnCLo\nHXIGiYxdmQKBgC9ZsnfY+UlENkRw6AgdEDWYiBE/8vTzti3DgwodB2GARvx6QsF6\n9jSHH77Ep+MZ5HErVAFaMu82lQiPMpI4F3sJLMgHlEdYapIVWnYwQD/bbivQz7Xc\nUJigJ1k9dHF/oAiVdwlCnN4CloNnj6+XvNpImIKQ6qUJ+GQqd9yQx+3nAoGAEdbT\n2s7Xna5063oLVHD+l4pysmadEbCX7AJ91ML67eGUrgoEG0VJWLLvFicSgKupzJ7E\nTVY2DnlN+mznPeo636RFLCcBwUvYg4DATZKYYMPsbMMaxyWH0yVQZAe+g1XZCoY7\nyffYcN12Y/qGalObYVcuPwpZE5O//7EjKhmLNSkCgYBCo/our+7uqRumXsmu9Usg\np2iXRpGGemvY10AuHIpVT2J3iv522SCfnVNTnLnkQ8KEWOyzwZJIVlFnRzFx84ep\nquFEbrcBxaExlDvcLsfovNG+bDRKCIfnmjDqkEqT3ZugX+EhXlTimGXmHyQsQVss\ncllqtyU8LOUCdPoWQ84oEA==\n-----END PRIVATE KEY-----\n",
+  "private_key": pkey,
   "client_email": "ghvgcfd@sttaitts.iam.gserviceaccount.com",
   "client_id": "103741498037869784292",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
@@ -36,14 +38,14 @@ dict = {
 }
 
 
-
+print(dictt)
 
 
 
 def text_to_wav(voice_name: str, text: str):
         try:
             with open('sdadsasg.json', 'w', encoding='utf-8') as f:
-                json.dump(dict, f, ensure_ascii=False, indent=2)
+                json.dump(dictt, f, ensure_ascii=False, indent=2)
         except Exception as e:
             traceback.print_exception(e)
             wait_for_it = input('Press enter to close the terminal window')
@@ -81,47 +83,33 @@ while True:
 
 
     if not recOn:
-        try:  # used try so that if user pressed other than the given key error will not be shown
+        try:
             if keyboard.is_pressed(';'): 
                 recOn = True
-                pass  # finishing the loop
+                pass
         except:
             pass
 
     if recOn:
-
-        #time.sleep(1)
-
-        # obtain audio from the microphone
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Waiting.")
             audio = r.listen(source)
-        # recognize speech using Google Speech Recognition
         try:
-        # for testing purposes, we're just using the default API key
-        # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
-        # instead of `r.recognize_google(audio)`
             saidString = r.recognize_google(audio, language='cs-CZ')
             print("Recognized: " + saidString)
 
-            if "leo" in saidString.lower() or "listen" in saidString.lower() or "poslouchej" in saidString.lower(): #Legendary Effective Operant
-                # obtain audio from the microphone
+            if "listen" in saidString.lower() or "poslouchej" in saidString.lower():
                 r = sr.Recognizer()
                 with sr.Microphone() as source:
                     text_to_wav("cs-CZ-Wavenet-A", "Ano?")
                     print("Ano?")
                     audio = r.listen(source)
-                # recognize speech using Google Speech Recognition
                 try:
-                # for testing purposes, we're just using the default API key
-                # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
-                # instead of `r.recognize_google(audio)`
                     saidString = r.recognize_google(audio, language='cs-CZ')
                     print("Recognized: " + saidString)
 
                     if saidString.lower() == "what's the temperature" or saidString.lower() == "what is the temperature" or saidString.lower() == "jaká je teplota" or saidString.lower() == "teplota":
-                        #gpt_prompt = "What's the temperature in Černošice"
                         gpt_prompt = "Jaká je v Černošicích teplota?"
                         response = openai.Completion.create(
                         engine="text-davinci-003",
