@@ -12,6 +12,8 @@ import traceback
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), 'keys.env'))
 pkey = str(os.getenv("SERVICE_ACCOUNT_PKEY"))
+id = str(os.getenv("SERVICE_ACCOUNT_ID"))
+pkeyid = str(os.getenv("SERVICE_ACCOUNT_PKEYID"))
 openai.organization = os.getenv("OPENAI_ORG")
 OPENAI_API_KEY = os.getenv("OPENAI_KEY")
 openai.api_key = os.getenv("OPENAI_KEY")
@@ -27,10 +29,10 @@ import google.cloud.texttospeech as tts
 dictt = {
   "type": "service_account",
   "project_id": "sttaitts",
-  "private_key_id": "8b0ad904fd6d6096d8b5e87f54d64fbb977d0012",
+  "private_key_id": pkeyid,
   "private_key": pkey,
   "client_email": "ghvgcfd@sttaitts.iam.gserviceaccount.com",
-  "client_id": "103741498037869784292",
+  "client_id": id,
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
