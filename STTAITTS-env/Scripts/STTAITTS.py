@@ -40,9 +40,7 @@ dictt = {
 }
 
 
-mess = [
-    {"role": "system", "content": "Jsi užitečný assistant."}
-    ]
+
 
 
 def text_to_wav(voice_name: str, text: str):
@@ -79,12 +77,23 @@ def text_to_wav(voice_name: str, text: str):
         clip = AudioSegment.from_wav(filename)
         play(clip)
         
+mode = input("Choose a mode:\n  1 - Default\n   2 - F.R.I.D.A.Y\n   3 - GOOFY AHH\n")
+aiMode = ""
+if mode.lower() == "default" or mode.lower() == "1":
+    aiMode = "Jsi užitečný assistant."
+elif mode.lower() == "friday" or mode.lower() == "f.r.i.d.a.y" or mode.lower() == "2":
+    aiMode = "Jsi F.R.I.D.A.Y z filmu Infinity War."
+elif mode.lower() == "goofy ahh" or mode.lower() == "goofy" or mode.lower() == "3":
+    aiMode = "Jsi borka co pořád říká fr fr, bez čepice, na boha, ledžit"
+else:
+    aiMode = "Jsi užitečný assistant."
 
 
+mess = [
+    {"role": "system", "content": aiMode}
+    ]
 
 while True:
-
-
     if not recOn:
         try:
             if keyboard.is_pressed(';'): 
@@ -94,15 +103,6 @@ while True:
             pass
 
     if recOn:
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Waiting.")
-            audio = r.listen(source)
-        try:
-            saidString = r.recognize_google(audio, language='cs-CZ')
-            print("Recognized: " + saidString)
-
-            if "listen" in saidString.lower() or "poslouchej" in saidString.lower():
                 r = sr.Recognizer()
                 with sr.Microphone() as source:
                     text_to_wav("cs-CZ-Wavenet-A", "Ano?")
@@ -229,17 +229,7 @@ while True:
 
             
             
-            
 
-        except sr.UnknownValueError:
-            print("Could not understand audio")
-            x = x + 1
-            if x > 4:
-                recOn = True
-                x = 0
-            
-        except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))
-        
-        os.system('cls' if os.name == 'nt' else 'clear')
     
+    recOn = False
+    os.system('cls' if os.name == 'nt' else 'clear')
